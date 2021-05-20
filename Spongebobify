@@ -1,3 +1,5 @@
+# turn any string into a spongebobified message with alternate capitalization
+
 def spongebobify(msg):
     
     msg_length = len(msg)
