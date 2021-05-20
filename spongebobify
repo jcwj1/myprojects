@@ -1,0 +1,26 @@
+def spongebobify(msg):
+    
+    msg_length = len(msg)
+    position = 1
+    new_msg = ""
+    for character in msg:
+        
+        # check if character is a letter
+        if character.isalpha() == True:
+            position += 1
+            
+            if position % 2 == 0:
+                new_msg += character.upper()
+            else:
+                new_msg += character.lower()
+        else:
+            new_msg += character
+        
+        
+    return new_msg
+
+# Test cases (below)
+print(spongebobify("How's it going!!"))
+print(spongebobify("What? Are you serious?"))
+print(spongebobify("The sum is 45 degrees celsius"))
+print(spongebobify("A very professional challenge"))
