@@ -1,6 +1,6 @@
 # this function decodes a message encrypted with a Caesar Cipher
 # msg = encrypted string
-# key = number of places in the alphabet the characters in the message have been shifted by
+# key = number of places in the alphabet which each character in the message has been shifted by
 
 def decode(msg, key):
     result = ""
