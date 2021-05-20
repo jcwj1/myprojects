@@ -1,0 +1,92 @@
+# this calculator attempts to incorporate functions to simplify many simple yet annoying mathematical calculations
+
+import math
+
+# ---------------------------- LINES ----------------------------
+class Line:                                                                                 # create a class called Line, to perform coordinate geometry-related calculations
+    def __init__(self, p1, p2):                                                             # constructor
+        global x1
+        global x2
+        global y1
+        global y2
+        x1 = p1[0]
+        y1 = p1[1]
+        x2 = p2[0]
+        y2 = p2[1]
+        
+    def get_slope(self):                                                                   # function to calculate the gradient of the line between 2 points
+        global m
+        m = (y2-y1)/(x2-x1)
+        return m
+
+    def get_distance(self):                                                                # function to calculate the distance between 2 points
+        return math.sqrt((y2-y1)**2 +(x2-x1)**2)
+
+# ---------------------------- VECTORS ----------------------------
+def dot(v1, v2):                                                                           # function to calculate the dot product of 2 vectors (returns integer)
+    return v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2]
+
+def add(v1, v2):
+    # addition vector function (returns array)
+    return [v1[0]+v2[0], v1[1]+v2[1], v1[2]+v2[2]]
+
+def mag(v):
+    # magnitude function (returns float)
+    return math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+
+
+
+# ---------------------------- ARRAYS ----------------------------
+def find_mean(arr):                                                                        # calculate the mode(s) of an array
+    sum_numbers = 0
+    for number in arr:
+        sum_numbers += number
+
+    mean = sum_numbers / len(arr)
+    return mean
+
+def find_modes(arr):                                                                       # calculate the mode(s) of an array
+    arr.sort()
+    mode_dict = dict((element, arr.count(element)) for element in set(arr))                # create a dictionary storing the occurances of each number in the array
+    return [key for key, value in mode_dict.items() if value == max(mode_dict.values())]   # return the number with the most occurances
+    
+    
+def find_median(arr):                                                                      # function to calculate the median of an array
+    arr.sort()
+    if len(arr) % 2 == 0:                                                                  # even number of elements in array, median is in between middle 2 elements
+        lower_median_pos = int((len(arr)/2) - 0.5)                  
+        lower_median = arr[lower_median_pos]
+  
+        upper_median_pos = int((len(arr)/2) + 0.5)
+        upper_median = arr[upper_median_pos]
+        
+        return (float(upper_median) + float(lower_median)) / 2
+    
+    else:                                                                                   # odd number of elements in array, median is the middle value
+        return float(arr[len(arr)/2])
+        
+        
+# ---------------------------- NUMBERS ----------------------------        
+def find_primes(k):                                                                         # find the first k prime numbers
+  primes = []
+  test_number = 2
+
+  while len(primes) < k:
+
+      divisor = 1
+      divisors_that_work = []
+      
+      while divisor <= test_number:                                                         # divide the test number by all numbers from 1 to test number, one at a time 
+          if (test_number % divisor) == 0:                                                  # check if test number can be divided by divisor; if so, add it to the list of divisors
+              divisors_that_work.append(divisor)
+          divisor += 1
+          
+      if len(divisors_that_work) == 2:                                                      # check if there are only 2 divisors = number is prime
+          primes.append(test_number)
+          test_number += 1
+          
+      else:
+          test_number += 1                                                                  # if number is not prime, move on to next number
+  return primes
+   
+   
